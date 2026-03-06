@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Inscritos - IA Práctica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .enrollees-page {
+            padding: 4rem 0;
+            min-height: 100vh;
+        }
+
+        .table-container {
+            margin-top: 2rem;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            color: var(--text-primary);
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 1.2rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        th {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--accent-secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem;
+            color: var(--text-secondary);
+        }
+
+        .btn-clear {
+            margin-top: 2rem;
+            opacity: 0.5;
+            font-size: 0.8rem;
+        }
+
+        .btn-clear:hover {
+            opacity: 1;
+            color: var(--error);
+        }
+    </style>
+</head>
+
+<body class="bg-alt">
+    <div class="enrollees-page">
+        <div class="container">
+            <header style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 class="gradient-text" style="font-size: 2.5rem; margin-bottom: 0.5rem;">Listado de Inscritos
+                    </h1>
+                    <p style="color: var(--text-secondary);">Control de asistencia y registros online.</p>
+                </div>
+                <a href="index.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+            </header>
+
+            <div class="table-container glass-panel" style="padding: 1rem;">
+                <table id="enrollees-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>WhatsApp</th>
+                            <th>Negocio</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody id="enrollees-body">
+                        <!-- Data will be injected here -->
+                    </tbody>
+                </table>
+                <div id="empty-msg" class="empty-state" style="display: none;">
+                    <i class="fa-solid fa-users-slash" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                    <p>No hay inscritos todavía.</p>
+                </div>
+            </div>
+
+            <div style="text-align: right;">
+                <button id="clear-btn" class="btn btn-clear"><i class="fa-solid fa-trash-can"></i> Limpiar todos los
+                    datos</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loadEnrollees() {
+            const list = JSON.parse(localStorage.getItem('enrollees') || '[]');
+            const body = document.getElementById('enrollees-body');
+            const emptyMsg = document.getElementById('empty-msg');
+            const table = document.getElementById('enrollees-table');
+
+            body.innerHTML = '';
+
+            if (list.length === 0) {
+                emptyMsg.style.display = 'block';
+                table.style.display = 'none';
+            } else {
+                emptyMsg.style.display = 'none';
+                table.style.display = 'table';
+
+                list.reverse().forEach(user => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td style="font-weight: 600;">${user.name}</td>
+                        <td>${user.email}</td>
+                        <td><a href="https://wa.me/${user.phone.replace(/\D/g, '')}" target="_blank" style="color: #25D366;"><i class="fa-brands fa-whatsapp"></i> ${user.phone}</a></td>
+                        <td>${user.business}</td>
+                        <td style="color: var(--text-secondary); font-size: 0.85rem;">${user.date}</td>
+                    `;
+                    body.appendChild(row);
+                });
+            }
+        }
+
+        document.getElementById('clear-btn').addEventListener('click', () => {
+            if (confirm('¿Seguro que quieres borrar a todos los inscritos?')) {
+                localStorage.removeItem('enrollees');
+                loadEnrollees();
+            }
+        });
+
+        // Load on start
+        loadEnrollees();
+
+        // Listen for storage changes from other tabs
+        window.addEventListener('storage', loadEnrollees);
+    </script>
+</body>
+
+</html>
