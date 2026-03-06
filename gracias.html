@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Inscripción Exitosa! - IA Práctica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .thanks-container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 1.5rem;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .thanks-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .thanks-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .next-steps {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .next-steps h3 {
+            color: var(--accent-secondary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .next-steps ul {
+            list-style: none;
+        }
+
+        .next-steps li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        .next-steps li i {
+            color: var(--success);
+            margin-right: 0.5rem;
+        }
+
+        .whatsapp-info {
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            border-radius: var(--border-radius-md);
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .whatsapp-info p {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .whatsapp-info a {
+            color: #25D366;
+            font-weight: 700;
+        }
+
+        .thanks-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body class="bg-alt">
+    <div class="thanks-container">
+        <div class="success-icon">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        
+        <h1 class="thanks-title">¡Te has inscribido exitosamente!</h1>
+        
+        <p class="thanks-subtitle">
+            Gracias por unirte al curso de IA Práctica para Negocios. 
+            Tu registro ha sido guardado y estás a un paso de transformar tu negocio.
+        </p>
+
+        <div class="whatsapp-info">
+            <p><i class="fa-brands fa-whatsapp"></i> ¿Tienes dudas? Escríbenos: 
+                <a href="https://wa.me/8094909664" target="_blank">809-490-9664</a>
+            </p>
+        </div>
+
+        <div class="next-steps">
+            <h3><i class="fa-solid fa-list-check"></i> Próximos pasos:</h3>
+            <ul>
+                <li><i class="fa-solid fa-check"></i> Revisa tu correo electrónico para más detalles</li>
+                <li><i class="fa-solid fa-check"></i> Agrega nuestro número de WhatsApp para atención personalizada</li>
+                <li><i class="fa-solid fa-check"></i> Te contactaremos pronto con los detalles del curso</li>
+            </ul>
+        </div>
+
+        <div class="thanks-actions">
+            <a href="index.html" class="btn btn-outline">
+                <i class="fa-solid fa-house"></i> Volver al inicio
+            </a>
+            <a href="https://wa.me/8094909664" target="_blank" class="btn btn-primary">
+                <i class="fa-brands fa-whatsapp"></i> Contactar por WhatsApp
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
